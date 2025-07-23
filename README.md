@@ -7,7 +7,7 @@
 1. **TSV 정리**: 각 에피소드별 상황/스킬/대사 데이터 구성
 2. **프롬프트 설계**: 선택지 구성 및 출력 형식 통제 (`prompts/`)
 3. **모델 실행**: `kanana-nano-2.1b-instruct` 모델로 대사/이유/선택 생성
-4. **결과 저장**: `results/` 및 `prompt_output/` 에 기록
+4. **결과 저장**: `results/` 버전별 기록
 5. **비교 분석**: 선택 이유의 일관성, 감정, 전략성 분석
 
 ---
@@ -27,7 +27,7 @@ Solo_Leveling/
 ├── episodes/ # 에피소드별 실험 관리
 │ ├── ep1_dongseok/ # 1편: 황동석 편
 │ │ ├── ep1_dongseok.tsv # 원본 TSV
-│ │ ├── notes.md # 실험 메모
+│ │ ├── notes.md # 실험 버전별 메모
 │ │ ├── prompts/ # 실험 프롬프트 (v1v14)
 │ │ ├── results/ # 결과 (v1v14)
 │ │ └── run.ipynb # 실험 실행 파일
@@ -72,12 +72,6 @@ Solo_Leveling/
 
 
 
-## 실험 방식 요약
-1. `.tsv` 기반으로 LLM 입력용 `.jsonl` 생성
-2. `kanana-nano-2.1b-instruct` 모델을 사용하여 선택지에 대한 결과 생성
-3. 결과는 `.md` 파일로 저장
-
----
 
 ## 사용 모델
 - [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
