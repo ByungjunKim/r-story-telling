@@ -1,5 +1,16 @@
 
 # 프로젝트 : Solo Leveling 선택지 시뮬레이션
+---
+
+##  실험 진행 흐름
+
+1. **TSV 정리**: 각 에피소드별 상황/스킬/대사 데이터 구성
+2. **프롬프트 설계**: 선택지 구성 및 출력 형식 통제 (`prompts/`)
+3. **모델 실행**: `kanana-nano-2.1b-instruct` 모델로 대사/이유/선택 생성
+4. **결과 저장**: `results/` 및 `prompt_output/` 에 기록
+5. **비교 분석**: 선택 이유의 일관성, 감정, 전략성 분석
+
+---
 
 ---
 
@@ -7,21 +18,44 @@
 
 ```
 Solo_Leveling/
-├── ep1_dongseok.tsv
-├── ep2_hidden.tsv
-├── ep3_job_quest.tsv
-├── sl_dialogue.tsv
-├── sl_personality.tsv
-├── sl_situation.tsv
-├── sl_skill.tsv
-├── ep1_dongseok_prompt.jsonl
-├── ep2_hidden_prompt.jsonl
-├── ep3_job_quest_prompt.jsonl
-├── sl_choice_simulation.ipynb
-└── prompt_output/
-    ├── ep1_dongseok_result.md
-    ├── ep2_hidden_result.md
-    └── ep3_job_quest_result.md
+├── data/ # 공통 데이터
+│ ├── sl_dialogue.tsv # 대사
+│ ├── sl_personality.tsv # 성격 정보
+│ ├── sl_situation.tsv # 상황 설명
+│ └── sl_skill.tsv # 스킬 모음
+│
+├── episodes/ # 에피소드별 실험 관리
+│ ├── ep1_dongseok/ # 1편: 황동석 편
+│ │ ├── ep1_dongseok.tsv # 원본 TSV
+│ │ ├── notes.md # 실험 메모
+│ │ ├── prompts/ # 실험 프롬프트 (v1v14)
+│ │ ├── results/ # 결과 (v1v14)
+│ │ └── run.ipynb # 실험 실행 파일
+│ │
+│ ├── ep2_hidden/ # 2편: 히든 퀘스트 편
+│ │ ├── ep2_hidden.tsv
+│ │ ├── notes.md
+│ │ ├── prompts/
+│ │ └── results/
+│ │
+│ ├── ep3_job_quest/ # 3편: 전직 퀘스트 편
+│ │ ├── ep3_job_quest.tsv
+│ │ ├── notes.md
+│ │ ├── prompts/
+│ │ └── results/
+│
+├── inference/
+│ └── sl_choice_simulation.ipynb # 초기 실험 (prompt_output 관련 파일 ), 이후 에피소드별로 실험
+│
+├── evaluation/ # 평가 지표/후속 분석 예정
+│
+├── prompt_output/ # 초기 실험 
+│ ├── ep1_dongseok_result.md
+│ ├── ep2_hidden_result.md
+│ └── ep3_job_quest_result.md
+│
+└── README.md
+
 ```
 
 ---
@@ -36,20 +70,7 @@ Solo_Leveling/
 
 ---
 
-## 주요 데이터 파일 설명
 
-| 파일명 | 설명 |
-|--------|------|
-| `sl_dialogue.tsv` | 성진우의 주요 대사 원문 |
-| `sl_personality.tsv` | 성격  |
-| `sl_situation.tsv` | 각 에피소드의 상황 요약 |
-| `sl_skill.tsv` | 사용된 스킬 및 부가 설명 정리 |
-| `ep*.tsv` | 에피소드별 선택지 실험용 데이터 |
-| `ep*_prompt.jsonl` | LLM 입력용 포맷 |
-| `prompt_output/*.md` | 실험 결과(markdown 파일) |
-| `sl_choice_simulation.ipynb` | 전체 실행 코드 |
-
----
 
 ## 실험 방식 요약
 1. `.tsv` 기반으로 LLM 입력용 `.jsonl` 생성
@@ -58,5 +79,5 @@ Solo_Leveling/
 
 ---
 
-## 📌 사용 모델
+## 사용 모델
 - [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
