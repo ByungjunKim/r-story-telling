@@ -31,8 +31,7 @@
   - 선택지 기반 캐릭터 대사 생성까지 수행  
   - 평가 지표 분석은 미진행 상태
 #### 데이터 처리 흐름
-![RAG Data Flow](images/image (2).png)
----
+![RAG Data Flow](images/image%20(2).png)
 
 ## 디렉토리 구성
 
