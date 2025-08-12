@@ -1,5 +1,0 @@
-gradio
-langchain
-transformers
-torch
-faiss-cpu
