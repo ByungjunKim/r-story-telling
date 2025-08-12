@@ -1,6 +1,4 @@
-## 사용 모델
-- [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
-- 
+
 # 프로젝트 : Solo Leveling 선택지 시뮬레이션
 ---
 
@@ -13,7 +11,8 @@
 
 
 ---
-
+## 사용 모델
+- [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
 ---
 
 ##  디렉토리 구성
