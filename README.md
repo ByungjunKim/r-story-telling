@@ -2,19 +2,9 @@
 # 프로젝트 : Solo Leveling 선택지 시뮬레이션
 ---
 
-##  실험 진행 흐름
-
-1. **TSV 정리**: 각 에피소드별 상황/스킬/대사 데이터 구성
-2. **프롬프트 설계**: 선택지 구성 및 출력 형식 통제 (`prompts/`)
-3. **모델 실행**: `kanana-nano-2.1b-instruct` 모델로 대사/이유/선택 생성
-4. **결과 저장**: `results/` 버전별 기록
-
-
----
 ## 사용 모델
 - [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
---
-
+---
 ## 실험 구성
 ### 1. 프롬프트 기반 실험 (Prompt-based)
 - 목적: 동일한 상황에서 프롬프트를 변경하며, 성진우 캐릭터의 대사 생성과 선택 이유를 비교
@@ -32,10 +22,6 @@ FAISS 벡터DB 생성 및 저장 (index.faiss, index.pkl)
 실험 시 사용자 선택지 입력 → 벡터DB에서 관련 대사 검색 → 검색 결과를 프롬프트에 포함 → 모델이 새로운 대사 생성
 - 결과물:
 선택지에 기반한 캐릭터 대사 생성까지 수행,  평가 지표 분석은 미진행 상태
-주요 파일:
-sl_selection.ipynb: 인덱스 생성 및 선택지 기반 대사 생성 코드
-sl_webtoon_full_data_sequential.tsv: 전체 웹툰 대사 데이터
-jinwoo_faiss/: 벡터DB 인덱스 파일
 
 ##  디렉토리 구성
 
@@ -48,37 +34,62 @@ Solo_Leveling/
 │ └── sl_skill.tsv # 스킬 모음
 │
 ├── episodes/ # 에피소드별 실험 관리
-│ ├── ep1_dongseok/ # 1편: 황동석 편, 현재 ep1 만 실험 
+│ ├── ep1_dongseok/ # 1편: 황동석 편, 현재 ep1 만 실험 (Prompt-based)
 │ │ ├── ep1_dongseok.tsv # 원본 TSV
 │ │ ├── notes.md # 실험 버전별 메모
 │ │ ├── prompts/ # 실험 프롬프트 (v1v14)
 │ │ ├── results/ # 결과 (v1v14)
 │ │ └── run.ipynb # 실험 실행 파일
-│ │
-│ ├── ep2_hidden/ # 2편: 히든 퀘스트 편 
-│ │ ├── ep2_hidden.tsv
-│ │ ├── notes.md
-│ │ ├── prompts/
-│ │ └── results/
-│ │
-│ ├── ep3_job_quest/ # 3편: 전직 퀘스트 편
-│ │ ├── ep3_job_quest.tsv
-│ │ ├── notes.md
-│ │ ├── prompts/
-│ │ └── results/
-│
-├── inference/
-│ └── sl_choice_simulation.ipynb # 초기 실험 (prompt_output 관련 파일 ), 이후 에피소드별로 실험
-│
-├── evaluation/ # 평가 지표/후속 분석 예정
-│
-├── prompt_output/ # 초기 실험 
-│ ├── ep1_dongseok_result.md
-│ ├── ep2_hidden_result.md
-│ └── ep3_job_quest_result.md
-│
-└── README.md
 
+
+├── data
+│   ├── ngrok
+│   ├── ngrok-stable-linux-amd64.zip
+│   ├── rag_gradio2.py
+│   ├── rag_gradio.py
+│   ├── requirements.txt
+│   ├── selection.ipynb
+│   ├── sl_dialogue.tsv
+│   ├── Sl_lizard.tsv
+│   ├── sl_personality.tsv
+│   ├── sl_situation.tsv
+│   ├── sl_skill.tsv
+│   ├── sl_webtoon_full_data_sequential.tsv
+│   ├── sl_webtoon_full_data.tsv
+│   ├── solo_leveling_faiss.index
+│   ├── solo_leveling_faiss_ko.index
+│   └── solo_leveling_texts.pkl
+├── episodes
+│   ├── ep1_dongseok #ep1 만 실험 완료
+│   │   ├── context
+│   │   │   └── ep1_context.ipynb
+│   │   ├── ep1_dongseok.tsv
+│   │   ├── ep1_lizard.tsv
+│   │   ├── notes.md #메모
+│   │   ├── prompts #버전별 기록 
+│   │   ├── results #버전별 기록
+│   │   └── run.ipynb #prompt & result 실행 파일 
+│   ├── ep2_hidden
+│   └── ep3_job_quest
+│    
+├── evaluation  # 평가 지표/후속 분석 예정
+├── inference
+│   └── sl_choice_simulation.ipynb # 초기 실험 (prompt_output 관련 파일 ), 이후 에피소드별로 실험
+├── prompt_output # 초기 실험 
+│   ├── ep1_dongseok_result.md
+│   ├── ep2_hidden_result.md
+│   └── ep3_job_quest_result.md
+├── README.md
+└── sl_selection  #rag_based 
+    ├── jinwoo_faiss
+    │   ├── index.faiss
+    │   └── index.pkl
+    ├── r-story-test.ipynb
+    ├── sl_selection.ipynb
+    ├── sl_webtoon_full_data_sequential.tsv
+    └── solo_leveling_faiss_ko
+        ├── index.faiss
+        └── index.pkl
 ```
 
 ---
