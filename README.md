@@ -15,6 +15,26 @@
 - [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
 ---
 
+## 실험 구성
+### 1. 프롬프트 기반 실험 (Prompt-based)
+- 동일 데이터에서 프롬프트에 따른 응답 차이 비교
+- 
+### 2. RAG 기반 실험 (RAG-based)
+- 목적: 전체 웹툰 대사 데이터에서 관련 장면을 검색해 프롬프트에 포함시킨 뒤, 주어진 선택지에 맞는 캐릭터 대사를 생성
+- vectordb에서 관련 컨텍스트 검색 후 선택지
+- 진행 내용:
+sl_webtoon_full_data_sequential.tsv에서 대사만 필터링
+대사 텍스트를 Ko-SBERT(jhgan/ko-sroberta-multitask) 임베딩으로 변환
+FAISS 벡터DB 생성 및 저장 (index.faiss, index.pkl)
+실험 시 사용자 선택지 입력 → 벡터DB에서 관련 대사 검색 → 검색 결과를 프롬프트에 포함 → 모델이 새로운 대사 생성
+- 결과물:
+선택지에 기반한 캐릭터 대사 생성까지 수행
+평가 지표 분석은 미진행 상태
+주요 파일:
+sl_selection.ipynb: 인덱스 생성 및 선택지 기반 대사 생성 코드
+sl_webtoon_full_data_sequential.tsv: 전체 웹툰 대사 데이터
+jinwoo_faiss/: 벡터DB 인덱스 파일
+
 ##  디렉토리 구성
 
 ```
