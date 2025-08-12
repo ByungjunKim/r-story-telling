@@ -13,12 +13,15 @@
 ---
 ## 사용 모델
 - [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
----
+--
 
 ## 실험 구성
 ### 1. 프롬프트 기반 실험 (Prompt-based)
-- 동일 데이터에서 프롬프트에 따른 응답 차이 비교
-- 
+- 목적: 동일한 상황에서 프롬프트를 변경하며, 성진우 캐릭터의 대사 생성과 선택 이유를 비교
+- 진행 내용:
+ep1_dongseok.tsv를 기반으로 버전별 프롬프트(v1~v21) 작성
+각 버전마다: 선택지 제시 선택지별 대사와 이유 생성 & 최종 선택(번호 및 이유) 출력
+
 ### 2. RAG 기반 실험 (RAG-based)
 - 목적: 전체 웹툰 대사 데이터에서 관련 장면을 검색해 프롬프트에 포함시킨 뒤, 주어진 선택지에 맞는 캐릭터 대사를 생성
 - vectordb에서 관련 컨텍스트 검색 후 선택지
@@ -28,8 +31,7 @@ sl_webtoon_full_data_sequential.tsv에서 대사만 필터링
 FAISS 벡터DB 생성 및 저장 (index.faiss, index.pkl)
 실험 시 사용자 선택지 입력 → 벡터DB에서 관련 대사 검색 → 검색 결과를 프롬프트에 포함 → 모델이 새로운 대사 생성
 - 결과물:
-선택지에 기반한 캐릭터 대사 생성까지 수행
-평가 지표 분석은 미진행 상태
+선택지에 기반한 캐릭터 대사 생성까지 수행,  평가 지표 분석은 미진행 상태
 주요 파일:
 sl_selection.ipynb: 인덱스 생성 및 선택지 기반 대사 생성 코드
 sl_webtoon_full_data_sequential.tsv: 전체 웹툰 대사 데이터
