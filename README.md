@@ -1,4 +1,6 @@
-
+## 사용 모델
+- [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
+- 
 # 프로젝트 : Solo Leveling 선택지 시뮬레이션
 ---
 
@@ -8,7 +10,7 @@
 2. **프롬프트 설계**: 선택지 구성 및 출력 형식 통제 (`prompts/`)
 3. **모델 실행**: `kanana-nano-2.1b-instruct` 모델로 대사/이유/선택 생성
 4. **결과 저장**: `results/` 버전별 기록
-5. **비교 분석**: 선택 이유의 일관성, 감정, 전략성 분석
+
 
 ---
 
@@ -25,14 +27,14 @@ Solo_Leveling/
 │ └── sl_skill.tsv # 스킬 모음
 │
 ├── episodes/ # 에피소드별 실험 관리
-│ ├── ep1_dongseok/ # 1편: 황동석 편
+│ ├── ep1_dongseok/ # 1편: 황동석 편, 현재 ep1 만 실험 
 │ │ ├── ep1_dongseok.tsv # 원본 TSV
 │ │ ├── notes.md # 실험 버전별 메모
 │ │ ├── prompts/ # 실험 프롬프트 (v1v14)
 │ │ ├── results/ # 결과 (v1v14)
 │ │ └── run.ipynb # 실험 실행 파일
 │ │
-│ ├── ep2_hidden/ # 2편: 히든 퀘스트 편
+│ ├── ep2_hidden/ # 2편: 히든 퀘스트 편 
 │ │ ├── ep2_hidden.tsv
 │ │ ├── notes.md
 │ │ ├── prompts/
@@ -69,9 +71,3 @@ Solo_Leveling/
 | **ep3: 전직 퀘스트 편** | 히든 클래스 ‘네크로맨서’ 전직 여부 선택 |
 
 ---
-
-
-
-
-## 사용 모델
-- [`kakaocorp/kanana-nano-2.1b-instruct`](https://huggingface.co/kakaocorp/kanana-nano-2.1b-instruct)
